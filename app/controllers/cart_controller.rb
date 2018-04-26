@@ -34,6 +34,7 @@ class CartController < ApplicationController
 
   def checkout
   	line_items = current_order.line_items
+    @order = current_order
   	@order = update(user_id: current_user.id, subtotal: 0)
   	line_items.each do |line_item|
   		line_item.product.update(quantity: (line_item.product.quantity - line_item.quantity))
